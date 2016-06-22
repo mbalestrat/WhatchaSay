@@ -1,10 +1,9 @@
-
 var gotText = text.value;
 var gotSentiment = jsonpRequest(gotText);
-var sentiment= JSON.stringify(gotSentiment);
+var sentiment = JSON.parse(gotSentiment);
 
 //function buttonHit(){
-    //sentiment = jsonpRequest(gotText);
+//sentiment = jsonpRequest(gotText);
 //}
 
 
@@ -15,6 +14,7 @@ function jsonpRequest(data) {
 
     params += "&token=";
     params += APIKEY;
+    params += "&callback=callBack";
 
     var script = document.createElement('script');
     script.src = params;
@@ -24,15 +24,12 @@ function jsonpRequest(data) {
 
 function callBack(response) {
 
-        var result = response.sentiment;
-        
-        sentimentScore = response.sentiment.score;
-        sentimentType = response.sentiment.type;
+    var result = response.sentiment;
 
-        document.body.appendChild(script);
+    sentimentScore = response.sentiment.score;
+    sentimentType = response.sentiment.type;
 
-       //callback(WeatherForecast);
-    };
+    //document.body.appendChild(script);
 
-
-
+    //callback(WeatherForecast);
+};
