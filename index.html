@@ -4,7 +4,11 @@
 
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="./material.min.css">
+    <script src="./material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <title>WhatchaSay?</title>
 </head>
 
@@ -12,14 +16,20 @@
 <body>
     <div align="center">
         <br>
+        <h1>WhatchaSay?</h1>
+        <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows="4" cols="50" id="text">Enter their text here, and find out what they really think.</textarea>
+            <label class="mdl-textfield__label" for="sample5">Enter your text here.</label>
+        </div>
         <br>
-        <img src="logo.png" alt="WhatchaSay?">
-        <br>
-        <textarea rows="4" cols="50" id="text">Enter their text here, and find out what they really think.</textarea>
-        <br>
-        <input type="submit" id="submit" value="Crunch it!" />
+
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+            Go!
+        </button>
+
     </div>
 </body>
 
 <script src="what.js"></script>
+
 </html>
