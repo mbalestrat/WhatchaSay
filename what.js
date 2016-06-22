@@ -42,10 +42,10 @@ function callBack(response) {
 
 function outputToPage(sentimentScore, sentimentType) {
 
-    var newOut = "<strong>Here's what we think:</strong> <br>";
-    newOut += "This person's tone seems " + sentimentType + "<br>";
+    var newOut = "<p><strong>Here's what we think:</strong> <br>";
+    newOut += "This person's tone seems " + sentimentType + ". <br>";
     newOut += "On a rating of -10 to 10 (with 10 being very friendly) <br>"
-    newOut += "We'd say this person's tone rates " + sentimentScore;
+    newOut += "We'd say this person's tone rates " + sentimentScore + "</p>";
 
     outputAreaRef.innerHTML = newOut;
 
