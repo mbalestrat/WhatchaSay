@@ -6,7 +6,6 @@
  * @link https://github.com/google/material-design-lite
  */
 
-
 @charset "UTF-8";
 html {
     color: rgba(0, 0, 0, .87)
@@ -181,6 +180,7 @@ p {
 
 p {
     font-size: 14px;
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
     letter-spacing: 0;
     margin: 0 0 16px
 }

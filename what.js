@@ -1,10 +1,15 @@
-var gotText = text.value;
-var gotSentiment = jsonpRequest(gotText);
-var sentiment = JSON.parse(gotSentiment);
+var outputAreaRef = document.getElementById("outputArea");
+var gotText;
+var gotSentiment;
+var sentiment;
+var script;
 
-//function buttonHit(){
-//sentiment = jsonpRequest(gotText);
-//}
+
+function buttonHit() {
+    gotText = text.value;
+    gotSentiment = jsonpRequest(gotText);
+    sentiment = JSON.parse(gotSentiment);
+}
 
 
 function jsonpRequest(data) {
@@ -16,7 +21,7 @@ function jsonpRequest(data) {
     params += APIKEY;
     params += "&callback=callBack";
 
-    var script = document.createElement('script');
+    script = document.createElement('script');
     script.src = params;
     document.body.appendChild(script);
     return script.src;
@@ -29,7 +34,19 @@ function callBack(response) {
     sentimentScore = response.sentiment.score;
     sentimentType = response.sentiment.type;
 
-    //document.body.appendChild(script);
+    document.body.appendChild(script);
+    outputToPage(sentimentScore, sentimentType);
 
     //callback(WeatherForecast);
 };
+
+function outputToPage(sentimentScore, sentimentType) {
+
+    var newOut = "<strong>Here's what we think:</strong> <br>";
+    newOut += "This person's tone seems " + sentimentType + "<br>";
+    newOut += "On a rating of -10 to 10 (with 10 being very friendly) <br>"
+    newOut += "We'd say this person's tone rates " + sentimentScore;
+
+    outputAreaRef.innerHTML = newOut;
+
+}

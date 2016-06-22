@@ -17,13 +17,31 @@
     <div align="center">
         <br>
         <h1>WhatchaSay?</h1>
+
+        <table class="mdl-data-table mdl-js-data-table" width=30%>
+            <tr>
+                <td>
+                    <div align="center" id="outputArea">
+                        <br>
+                        <p>Ever wondered about someone's tone in that last text, FB message or e-mail?
+                            <br>
+                            <strong>Wonder no more.</strong>
+                            <br> WhatchaSay gives this robot's humble opinion on what that person's tone <i>really</i> was.</tr>
+            </p>
+            </div>
+            </td>
+        </table>
+
+
+
+
         <div class="mdl-textfield mdl-js-textfield">
-            <textarea class="mdl-textfield__input" type="text" rows="4" cols="50" id="text">Enter their text here, and find out what they really think.</textarea>
+            <textarea class="mdl-textfield__input" type="text" rows="4" cols="80" id="text">Enter their text here, and find out what they really think.</textarea>
             <label class="mdl-textfield__label" for="sample5">Enter your text here.</label>
         </div>
         <br>
 
-        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" onclick="buttonHit()">
             Go!
         </button>
 
