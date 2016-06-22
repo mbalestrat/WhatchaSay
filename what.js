@@ -3,12 +3,19 @@ var gotText;
 var gotSentiment;
 var sentiment;
 var script;
+var qualifier;
 
 
 function buttonHit() {
     gotText = text.value;
-    gotSentiment = jsonpRequest(gotText);
-    sentiment = JSON.parse(gotSentiment);
+    gotText = gotText.replace(/[`~!@#$%^&*()_|+\-=?;:'".<>\{\}\[\]\\\/]/gi, '');
+
+    if (gotText == null || gotText == undefined || gotText == "") {
+        outputAreaRef.innerHTML = "<p><strong>Please enter some text!</strong></p>";
+    } else {
+        gotSentiment = jsonpRequest(gotText);
+        sentiment = JSON.parse(gotSentiment);
+    }
 }
 
 
@@ -34,18 +41,22 @@ function callBack(response) {
     sentimentScore = response.sentiment.score;
     sentimentType = response.sentiment.type;
 
-    document.body.appendChild(script);
-    outputToPage(sentimentScore, sentimentType);
+    if (sentimentScore <= -0.5 || sentimentScore > 0.5) {
+        qualifier = "very";
+    } else if (sentimentScore >= -0.4 && sentimentScore <= 0) {
+        qualifier = "slightly";
+    } else if (sentimentScore <= 0.5) {
+        qualifier = "quite";
+    }
 
-    //callback(WeatherForecast);
+    document.body.appendChild(script);
+    outputToPage(qualifier, sentimentType);
 };
 
-function outputToPage(sentimentScore, sentimentType) {
+function outputToPage(qualifier, sentimentType) {
 
     var newOut = "<p><strong>Here's what we think:</strong> <br>";
-    newOut += "This person's tone seems " + sentimentType + ". <br>";
-    newOut += "On a rating of -10 to 10 (with 10 being very friendly) <br>"
-    newOut += "We'd say this person's tone rates " + sentimentScore + "</p>";
+    newOut += "This person's tone seems " + qualifier + " " + sentimentType + ". <br>";
 
     outputAreaRef.innerHTML = newOut;
 
