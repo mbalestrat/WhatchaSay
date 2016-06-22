@@ -11,3 +11,5 @@ h1 {
     font-family: 'Pacifico', cursive, sans-serif;
     font-size: 50px;
 }
+
+.material-icons.md-48 { font-size: 48px; }

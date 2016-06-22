@@ -16,7 +16,7 @@ function buttonHit() {
         gotSentiment = jsonpRequest(gotText);
         sentiment = JSON.parse(gotSentiment);
     }
-}
+};
 
 
 function jsonpRequest(data) {
@@ -32,32 +32,48 @@ function jsonpRequest(data) {
     script.src = params;
     document.body.appendChild(script);
     return script.src;
-}
+};
 
 function callBack(response) {
 
     var result = response.sentiment;
+    var icon;
 
     sentimentScore = response.sentiment.score;
     sentimentType = response.sentiment.type;
 
-    if (sentimentScore <= -0.5 || sentimentScore > 0.5) {
+    if (sentimentScore <= -0.5) {
         qualifier = "very";
+        icon = "sentiment_very_dissatisfied";
     } else if (sentimentScore >= -0.4 && sentimentScore <= 0) {
         qualifier = "slightly";
-    } else if (sentimentScore <= 0.5) {
+        icon = "sentiment_neutral";
+    } else if (sentimentScore > 0 && sentimentScore <= 0.5) {
         qualifier = "quite";
+        icon = "sentiment_satisfied";
+    } else if (sentimentScore > 0.5) {
+        qualifier = "really";
+        icon = "sentiment_very_satisfied";
+    }
+
+    if (sentimentType == "negative") {
+        sentimentType = "salty";
+    } else if (sentimentType == "positive") {
+        sentimentType = "friendly";
+    } else if (sentimentType == "neutral") {
+        icon = "sentiment_neutral";
     }
 
     document.body.appendChild(script);
-    outputToPage(qualifier, sentimentType);
+    outputToPage(qualifier, sentimentType, icon);
 };
 
-function outputToPage(qualifier, sentimentType) {
+function outputToPage(qualifier, sentimentType, icon) {
 
     var newOut = "<p><strong>Here's what we think:</strong> <br>";
+    newOut += "<i class=" + "\"material-icons md-48\">" + icon + "</i><br>";
     newOut += "This person's tone seems " + qualifier + " " + sentimentType + ". <br>";
 
     outputAreaRef.innerHTML = newOut;
 
-}
+};
